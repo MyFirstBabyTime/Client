@@ -10,6 +10,7 @@ import {
   SIGN_UP_VERIFICATION,
   SIGN_UP_PROFILE,
 } from "./CONSTANTS";
+import NotFound from "./NotFound";
 
 const RouterConfig = () => {
   return (
@@ -21,6 +22,8 @@ const RouterConfig = () => {
         <Route exact path={SIGN_UP_FORM} />
         <Route exact path={SIGN_UP_VERIFICATION} />
         <Route exact path={SIGN_UP_PROFILE} />
+
+        <Route path="*" component={NotFound} />
       </Switch>
     </Router>
   );
