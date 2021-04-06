@@ -1,4 +1,9 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import {
   SIGN_IN,
   SIGN_UP_FORM,
@@ -8,9 +13,10 @@ import {
 
 const RouterConfig = () => {
   return (
-    <>
+    <Router>
       <Switch>
         <Redirect exact path="/" to={SIGN_IN} />
+
         <Route exact path={SIGN_IN} />
         <Route exact path={SIGN_UP_FORM} />
         <Route exact path={SIGN_UP_VERIFICATION} />
@@ -18,7 +24,7 @@ const RouterConfig = () => {
 
         <Route path="*" />
       </Switch>
-    </>
+    </Router>
   );
 };
 
