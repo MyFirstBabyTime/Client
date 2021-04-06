@@ -21,8 +21,6 @@ const RouterConfig = () => {
         <Route exact path={SIGN_UP_FORM} />
         <Route exact path={SIGN_UP_VERIFICATION} />
         <Route exact path={SIGN_UP_PROFILE} />
-
-        <Route path="*" />
       </Switch>
     </Router>
   );
