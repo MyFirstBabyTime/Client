@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const SContainer = styled.div`
   width: 100%;
-  height: 8.5vh;
+  height: 9.5vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,7 +15,7 @@ const STitle = styled.h3`
 
 const SInput = styled.input`
   width: 100%;
-  height: 5vh;
+  height: 6vh;
   border: 1px solid #d2d2d2;
   padding-left: 0.8vw;
   box-sizing: border-box;
