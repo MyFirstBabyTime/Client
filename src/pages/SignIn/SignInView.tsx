@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { InputForm } from "../../components/SignInSignUp/InputForm";
-import { SubmitButton } from "../../components/SignInSignUp/SubmitButton";
-import { Title } from "../../components/SignInSignUp/Title";
+import { InputForm } from "../../components/Authentication/InputForm";
+import { SubmitButton } from "../../components/Authentication/SubmitButton";
+import { Title } from "../../components/Authentication/Title";
 
 const SContainer = styled.div`
   width: 36vw;

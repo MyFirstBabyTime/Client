@@ -1,11 +1,11 @@
 import { FC } from "react";
 import styled from "styled-components";
-import SignInSignUpBackground from "../../assets/image/SignInSignUpBackground.png";
+import AuthenticationBackground from "../../assets/image/AuthenticationBackground.png";
 
 const SContainer = styled.div`
   width: 64vw;
   height: 100%;
-  background-image: url(${SignInSignUpBackground});
+  background-image: url(${AuthenticationBackground});
   background-size: cover;
   padding-top: 6vh;
   padding-left: 4vw;

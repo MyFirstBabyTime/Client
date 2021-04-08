@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Background } from "../../components/SignInSignUp/Background";
+import { Background } from "../../components/Authentication/Background";
 import { SignInView } from "./SignInView";
 import styled from "styled-components";
 
