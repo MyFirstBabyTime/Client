@@ -17,9 +17,9 @@ const SContainer = styled.div`
 
 const SInputFormWrapper = styled.div`
   width: 24.2vw;
-  height: 21vh;
+  height: 23vh;
   margin-top: 7.5vh;
-  margin-bottom: 31.4vh;
+  margin-bottom: 29.4vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
