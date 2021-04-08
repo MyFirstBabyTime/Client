@@ -1,5 +1,5 @@
 import { FC } from "react";
-import LinkRoute from "../components/LinkRoute/LinkRoute";
+import LinkRoute from "../components/LinkRoute";
 import { SIGN_IN } from "./CONSTANTS";
 
 const NotFound: FC = () => {

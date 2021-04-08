@@ -10,6 +10,7 @@ import {
   SIGN_UP_VERIFICATION,
   SIGN_UP_PROFILE,
 } from "./CONSTANTS";
+import SignIn from "../pages/SignIn";
 import NotFound from "./NotFound";
 
 const RouterConfig = () => {
@@ -18,7 +19,7 @@ const RouterConfig = () => {
       <Switch>
         <Redirect exact path="/" to={SIGN_IN} />
 
-        <Route exact path={SIGN_IN} />
+        <Route exact path={SIGN_IN} component={SignIn} />
         <Route exact path={SIGN_UP_FORM} />
         <Route exact path={SIGN_UP_VERIFICATION} />
         <Route exact path={SIGN_UP_PROFILE} />
