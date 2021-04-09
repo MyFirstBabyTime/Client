@@ -19,7 +19,7 @@ const SInputFormWrapper = styled.div`
   width: 24.2vw;
   height: 23vh;
   margin-top: 7.5vh;
-  margin-bottom: 29.4vh;
+  margin-bottom: 22.4vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,7 +35,7 @@ const SLinkToSignUp = styled(Link)`
 export const SignInView: FC = () => {
   return (
     <SContainer>
-      <Title>회원가입</Title>
+      <Title>로그인</Title>
       <SInputFormWrapper>
         <InputForm
           type="text"
