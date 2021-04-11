@@ -16,8 +16,9 @@ const Button = styled.button`
 
 interface Props {
   text: string;
+  onClick?: () => void;
 }
 
-export const SubmitButton: FC<Props> = ({ text }) => {
-  return <Button>{text}</Button>;
+export const SubmitButton: FC<Props> = ({ text, onClick }) => {
+  return <Button onClick={onClick}>{text}</Button>;
 };
