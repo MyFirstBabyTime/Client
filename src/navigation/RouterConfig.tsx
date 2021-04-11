@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { SIGN_IN, SIGN_UP } from "./CONSTANTS";
 import SignIn from "../pages/SignIn";
-import SignUpRouterConfig from "./SignUp/SignUpRouterConfig";
+import SignUp from "../pages/SignUp";
 import NotFound from "./NotFound";
 
 const RouterConfig = () => {
@@ -16,7 +16,7 @@ const RouterConfig = () => {
         <Redirect exact path="/" to={SIGN_IN} />
 
         <Route exact path={SIGN_IN} component={SignIn} />
-        <Route path={SIGN_UP} component={SignUpRouterConfig} />
+        <Route exact path={SIGN_UP} component={SignUp} />
 
         <Route path="*" component={NotFound} />
       </Switch>
