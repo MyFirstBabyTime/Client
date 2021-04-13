@@ -36,7 +36,6 @@ export const ChildBirthday: FC = () => {
   return (
     <SContainer>
       <STitle>생년월일</STitle>
-      {/* useRef를 사용하여 value 가져오기 */}
       <SSelectWrapper>
         <SSelect width={5}>
           {YEAR_LIST.map((item, index) => {
