@@ -39,27 +39,30 @@ export const ChildBirthday: FC = () => {
       {/* useRef를 사용하여 value 가져오기 */}
       <SSelectWrapper>
         <SSelect width={5}>
-          <option selected disabled>
-            Year
-          </option>
-          {YEAR_LIST.map((item) => {
-            return <option value={item}>{item}</option>;
+          {YEAR_LIST.map((item, index) => {
+            return (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            );
           })}
         </SSelect>
         <SSelect width={5}>
-          <option selected disabled>
-            Month
-          </option>
-          {MONTH_LIST.map((item) => {
-            return <option value={item}>{item}</option>;
+          {MONTH_LIST.map((item, index) => {
+            return (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            );
           })}
         </SSelect>
         <SSelect width={4}>
-          <option selected disabled>
-            Day
-          </option>
-          {DAY_LIST.map((item) => {
-            return <option value={item}>{item}</option>;
+          {DAY_LIST.map((item, index) => {
+            return (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            );
           })}
         </SSelect>
       </SSelectWrapper>
