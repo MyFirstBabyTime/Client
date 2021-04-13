@@ -5,7 +5,7 @@
 
 This project created with CRA(Create React App)
 
-### Git Branch Naming Convention
+## Git Branch Naming Convention
 
 main: 출시된 제품을 저장하는 곳
 
