@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { DAY_LIST, MONTH_LIST, YEAR_LIST } from "./DATE_CONSTANTS";
 
@@ -33,12 +33,39 @@ const SSelect = styled.select<{ width: number }>`
 `;
 
 export const ChildBirthday: FC = () => {
+  const [dayList, setDayList] = useState<Array<string>>([]);
+  const yearRef = useRef<HTMLSelectElement>(null);
+  const monthRef = useRef<HTMLSelectElement>(null);
+  const dayRef = useRef<HTMLSelectElement>(null);
+
+  useEffect(() => {
+    controllDayArray();
+  }, []);
+
+  const controllDayArray = () => {
+    if (["4월", "6월", "9월", "11월"].includes(monthRef.current?.value ?? "")) {
+      setDayList(DAY_LIST().slice(0, 30));
+    } else if (monthRef.current?.value === "2월") {
+      if (
+        (parseInt(yearRef.current?.value ?? "") % 4 === 0 &&
+          parseInt(yearRef.current?.value ?? "") % 100 !== 0) ||
+        parseInt(yearRef.current?.value ?? "") % 400 === 0
+      )
+        setDayList(DAY_LIST().splice(0, 29));
+      else {
+        setDayList(DAY_LIST().splice(0, 28));
+      }
+    } else {
+      setDayList(DAY_LIST());
+    }
+  };
+
   return (
     <SContainer>
       <STitle>생년월일</STitle>
       <SSelectWrapper>
-        <SSelect width={5}>
-          {YEAR_LIST.map((item, index) => {
+        <SSelect width={5} ref={yearRef} onChange={controllDayArray}>
+          {YEAR_LIST().map((item, index) => {
             return (
               <option key={index} value={item}>
                 {item}
@@ -46,8 +73,8 @@ export const ChildBirthday: FC = () => {
             );
           })}
         </SSelect>
-        <SSelect width={5}>
-          {MONTH_LIST.map((item, index) => {
+        <SSelect width={5} ref={monthRef} onChange={controllDayArray}>
+          {MONTH_LIST().map((item, index) => {
             return (
               <option key={index} value={item}>
                 {item}
@@ -55,8 +82,8 @@ export const ChildBirthday: FC = () => {
             );
           })}
         </SSelect>
-        <SSelect width={4}>
-          {DAY_LIST.map((item, index) => {
+        <SSelect width={4} ref={dayRef}>
+          {dayList.map((item, index) => {
             return (
               <option key={index} value={item}>
                 {item}

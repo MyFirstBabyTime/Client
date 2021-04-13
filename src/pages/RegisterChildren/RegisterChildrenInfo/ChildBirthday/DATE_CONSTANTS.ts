@@ -1,73 +1,18 @@
-export const YEAR_LIST = [
-  "2000년",
-  "2001년",
-  "2002년",
-  "2003년",
-  "2004년",
-  "2005년",
-  "2006년",
-  "2007년",
-  "2008년",
-  "2009년",
-  "2010년",
-  "2011년",
-  "2012년",
-  "2013년",
-  "2014년",
-  "2015년",
-  "2016년",
-  "2017년",
-  "2018년",
-  "2019년",
-  "2020년",
-  "2021년",
-];
+export const YEAR_LIST = () => {
+  const yearArray = [];
+  for (let i = 2000; i <= new Date().getFullYear(); i++)
+    yearArray.push(`${i}년`);
+  return yearArray;
+};
 
-export const MONTH_LIST = [
-  "1월",
-  "2월",
-  "3월",
-  "4월",
-  "5월",
-  "6월",
-  "7월",
-  "8월",
-  "9월",
-  "10월",
-  "11월",
-  "12월",
-];
+export const MONTH_LIST = () => {
+  const monthArray = [];
+  for (let i = 1; i <= 12; i++) monthArray.push(`${i}월`);
+  return monthArray;
+};
 
-export const DAY_LIST = [
-  "1일",
-  "2일",
-  "3일",
-  "4일",
-  "5일",
-  "6일",
-  "7일",
-  "8일",
-  "9일",
-  "10일",
-  "11일",
-  "12일",
-  "13일",
-  "14일",
-  "15일",
-  "16일",
-  "17일",
-  "18일",
-  "19일",
-  "20일",
-  "21일",
-  "22일",
-  "23일",
-  "24일",
-  "25일",
-  "26일",
-  "27일",
-  "28일",
-  "29일",
-  "30일",
-  "31일",
-];
+export const DAY_LIST = () => {
+  const dayArray = [];
+  for (let i = 1; i <= 31; i++) dayArray.push(`${i}일`);
+  return dayArray;
+};
