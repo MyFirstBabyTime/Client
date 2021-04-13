@@ -47,7 +47,7 @@ export const SignUpFormView: FC<Props> = ({ onIncreasePageNum }) => {
         />
       </SInputFormWrapper>
       <SubmitButton text="다음" onClick={onIncreasePageNum} />
-      <PagePoint position={1} />
+      <PagePoint position={1} end={3} />
     </SContainer>
   );
 };

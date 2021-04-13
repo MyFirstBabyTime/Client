@@ -1,11 +1,9 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import SignUpForm from "./SignUpForm";
-import SignUpValidation from "./SignUpValidation";
-import SignUpProfile from "./SignUpProfile";
+import RegisterChildrenInfo from "./RegisterChildrenInfo";
+import RegisterChildrenProfile from "./RegisterChildrenProfile";
 import { Title } from "../../components/Authentication/Title";
-import { REGISTER_CHILDREN } from "../../navigation/CONSTANTS";
 
 const SContainer = styled.div`
   width: 36vw;
@@ -17,12 +15,12 @@ const SContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export const SignUpView: FC = () => {
+export const RegisterChildrenView: FC = () => {
   const history = useHistory();
   const [pageNum, setPageNum] = useState<number>(1);
 
   useEffect(() => {
-    if (pageNum === 4) history.push(REGISTER_CHILDREN);
+    if (pageNum === 3) history.push("/main");
   }, [pageNum, history]);
 
   const onIncreasePageNum = () => {
@@ -31,13 +29,11 @@ export const SignUpView: FC = () => {
 
   return (
     <SContainer>
-      <Title>회원가입</Title>
+      <Title>내 아이 등록하기</Title>
       {pageNum === 1 ? (
-        <SignUpForm onIncreasePageNum={onIncreasePageNum} />
+        <RegisterChildrenInfo onIncreasePageNum={onIncreasePageNum} />
       ) : pageNum === 2 ? (
-        <SignUpValidation onIncreasePageNum={onIncreasePageNum} />
-      ) : pageNum === 3 ? (
-        <SignUpProfile onIncreasePageNum={onIncreasePageNum} />
+        <RegisterChildrenProfile onIncreasePageNum={onIncreasePageNum} />
       ) : (
         ""
       )}

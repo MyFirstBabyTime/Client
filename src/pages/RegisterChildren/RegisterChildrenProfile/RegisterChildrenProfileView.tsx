@@ -1,9 +1,9 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { InputForm } from "../../../components/Authentication/InputForm";
-import { PagePoint } from "../../../components/Authentication/PagePoint";
-import { SubmitButton } from "../../../components/Authentication/SubmitButton";
 import { SetProfile } from "../../../components/Authentication/SetProfile";
+import { SubmitButton } from "../../../components/Authentication/SubmitButton";
+import { PagePoint } from "../../../components/Authentication/PagePoint";
+import { WarningText } from "../../../components/Authentication/WarningText";
 
 const SContainer = styled.div`
   width: 100%;
@@ -27,15 +27,17 @@ interface Props {
   onIncreasePageNum: () => void;
 }
 
-export const SignUpProfileView: FC<Props> = ({ onIncreasePageNum }) => {
+export const RegisterChildrenProfileView: FC<Props> = ({
+  onIncreasePageNum,
+}) => {
   return (
     <SContainer>
       <SInputFormWrapper>
         <SetProfile />
-        <InputForm type="text" title="이름" placeholder="이름을 입력하세요" />
       </SInputFormWrapper>
-      <SubmitButton text="회원가입" onClick={onIncreasePageNum} />
-      <PagePoint position={3} end={3} />
+      <SubmitButton text="아이 등록하기" onClick={onIncreasePageNum} />
+      <WarningText />
+      <PagePoint position={2} end={2} />
     </SContainer>
   );
 };

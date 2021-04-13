@@ -92,7 +92,7 @@ export const SignUpValidationView: FC<Props> = ({ onIncreasePageNum }) => {
         <SInputContainer />
       </SInputFormWrapper>
       <SubmitButton text="다음" onClick={onIncreasePageNum} />
-      <PagePoint position={2} />
+      <PagePoint position={2} end={3} />
     </SContainer>
   );
 };
