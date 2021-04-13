@@ -35,7 +35,7 @@ export const SignUpProfileView: FC<Props> = ({ onIncreasePageNum }) => {
         <InputForm type="text" title="이름" placeholder="이름을 입력하세요" />
       </SInputFormWrapper>
       <SubmitButton text="회원가입" onClick={onIncreasePageNum} />
-      <PagePoint position={3} />
+      <PagePoint position={3} end={3} />
     </SContainer>
   );
 };
