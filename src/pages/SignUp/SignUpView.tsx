@@ -1,9 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
-import { Title } from "../../components/Authentication/Title";
 import SignUpForm from "./SignUpForm";
 import SignUpValidation from "./SignUpValidation";
 import SignUpProfile from "./SignUpProfile";
+import { Title } from "../../components/Authentication/Title";
+import { REGISTER_CHILDREN } from "../../navigation/CONSTANTS";
 
 const SContainer = styled.div`
   width: 36vw;
@@ -16,7 +18,12 @@ const SContainer = styled.div`
 `;
 
 export const SignUpView: FC = () => {
+  const history = useHistory();
   const [pageNum, setPageNum] = useState<number>(1);
+
+  useEffect(() => {
+    if (pageNum === 4) history.push(REGISTER_CHILDREN);
+  }, [pageNum, history]);
 
   const onIncreasePageNum = () => {
     setPageNum((prev) => prev + 1);
