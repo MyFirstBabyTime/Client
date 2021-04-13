@@ -1,13 +1,13 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-const SContainer = styled.div`
-  width: 3.4vw;
+const SContainer = styled.div<{ last: boolean }>`
+  width: ${(props) => (props.last ? "2vw" : "3.4vw")};
   height: 1.1vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 18vh;
+  margin-top: ${(props) => (props.last ? "" : "18vh")};
 `;
 
 const SPoint = styled.div<{ now: boolean }>`
@@ -20,14 +20,24 @@ const SPoint = styled.div<{ now: boolean }>`
 
 interface Props {
   position: number;
+  end: number;
 }
 
-export const PagePoint: FC<Props> = ({ position }) => {
+export const PagePoint: FC<Props> = ({ position, end }) => {
   return (
-    <SContainer>
-      <SPoint now={position === 1} />
-      <SPoint now={position === 2} />
-      <SPoint now={position === 3} />
-    </SContainer>
+    <>
+      {end === 2 ? (
+        <SContainer last={end === 2}>
+          <SPoint now={position === 1} />
+          <SPoint now={position === 2} />
+        </SContainer>
+      ) : (
+        <SContainer last={end === 2}>
+          <SPoint now={position === 1} />
+          <SPoint now={position === 2} />
+          <SPoint now={position === 3} />
+        </SContainer>
+      )}
+    </>
   );
 };
