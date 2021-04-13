@@ -40,6 +40,7 @@ export const MONTH_LIST = [
 
 export const DAY_LIST = [
   "1일",
+  "2일",
   "3일",
   "4일",
   "5일",
