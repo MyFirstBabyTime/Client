@@ -16,7 +16,7 @@ const SDefaultProfile = styled.div`
   width: 100%;
   height: 7.8vw;
   border-radius: 50%;
-  background-color: #8d8d8d;
+  background-color: #d2d2d2;
   display: flex;
   justify-content: center;
   align-items: center;
