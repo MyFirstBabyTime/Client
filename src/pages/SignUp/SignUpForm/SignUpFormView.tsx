@@ -5,7 +5,7 @@ import { PagePoint } from "../../../components/Authentication/PagePoint";
 import { SubmitButton } from "../../../components/Authentication/SubmitButton";
 
 const SContainer = styled.div`
-  width: 36vw;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
