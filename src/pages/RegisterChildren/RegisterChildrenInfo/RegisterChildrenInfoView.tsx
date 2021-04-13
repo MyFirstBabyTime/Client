@@ -4,6 +4,8 @@ import { InputForm } from "../../../components/Authentication/InputForm";
 import { SubmitButton } from "../../../components/Authentication/SubmitButton";
 import { WarningText } from "../../../components/Authentication/WarningText";
 import { PagePoint } from "../../../components/Authentication/PagePoint";
+import ChildBirthday from "./ChildBirthday";
+import ChildGender from "./ChildGender";
 
 const SContainer = styled.div`
   width: 100%;
@@ -36,6 +38,8 @@ export const RegisterChildrenInfoView: FC<Props> = ({ onIncreasePageNum }) => {
           title="이름"
           placeholder="아이의 이름을 입력하세요"
         />
+        <ChildBirthday />
+        <ChildGender />
       </SInputFormWrapper>
       <SubmitButton text="다음" onClick={onIncreasePageNum} />
       <WarningText />
