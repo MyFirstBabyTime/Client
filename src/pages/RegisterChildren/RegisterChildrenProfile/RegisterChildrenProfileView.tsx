@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
 import { SetProfile } from "../../../components/Authentication/SetProfile";
 import { SubmitButton } from "../../../components/Authentication/SubmitButton";
@@ -30,10 +30,27 @@ interface Props {
 export const RegisterChildrenProfileView: FC<Props> = ({
   onIncreasePageNum,
 }) => {
+  const [thumbnail, setThumbnail] = useState<string | undefined>();
+  const [profileThumbnail, setProfileThumbnail] = useState<File | null>(null);
+
+  const onChangeProfileImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+
+    const reader = new FileReader();
+
+    setProfileThumbnail(e.target.files[0]);
+
+    reader.onload = function (e) {
+      setThumbnail(e.target?.result?.toString());
+    }
+
+    reader.readAsDataURL(e.target.files[0]);
+  }
+
   return (
     <SContainer>
       <SInputFormWrapper>
-        <SetProfile />
+        <SetProfile onChange={onChangeProfileImg} thumbnail={thumbnail} />
       </SInputFormWrapper>
       <SubmitButton text="아이 등록하기" onClick={onIncreasePageNum} />
       <WarningText />

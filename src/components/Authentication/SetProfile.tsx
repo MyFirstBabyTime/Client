@@ -12,7 +12,7 @@ const SContainer = styled.div`
   margin: 0 auto;
 `;
 
-const SDefaultProfile = styled.div`
+const SProfileWrapper = styled.div`
   width: 100%;
   height: 7.8vw;
   border-radius: 50%;
@@ -22,23 +22,47 @@ const SDefaultProfile = styled.div`
   align-items: center;
 `;
 
+const SProfileImg = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+`
+
 const SDefaultProfileIcon = styled.img`
   width: 3.1vw;
   height: 3.1vw;
 `;
 
-const SProfileExplanation = styled.p`
+const SProfileFileInputText = styled.label`
   font-size: 1.1vw;
-  color: #8d8d8d;
+  color: #8D8D8D;
+  cursor: pointer;
+`
+
+const SProfileFileInput = styled.input`
+  width: 100%;
+  height: 100%;
+  display: none;
 `;
 
-export const SetProfile: FC = () => {
+interface Props {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  thumbnail: string | undefined;
+}
+
+export const SetProfile: FC<Props> = ({ onChange, thumbnail }) => {
   return (
     <SContainer>
-      <SDefaultProfile>
-        <SDefaultProfileIcon src={DefaultProfileIcon} />
-      </SDefaultProfile>
-      <SProfileExplanation>프로필 설정하기</SProfileExplanation>
+      <SProfileWrapper>
+        {thumbnail ?
+          <SProfileImg src={thumbnail} /> :
+          <SDefaultProfileIcon src={DefaultProfileIcon} />
+        }
+      </SProfileWrapper>
+      <SProfileFileInputText>
+        프로필 설정하기
+        <SProfileFileInput type="file" onChange={onChange} />
+      </SProfileFileInputText>
     </SContainer>
   );
 };
