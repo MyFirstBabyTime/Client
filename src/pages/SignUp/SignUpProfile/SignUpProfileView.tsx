@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 import { InputForm } from "../../../components/Authentication/InputForm";
 import { PagePoint } from "../../../components/Authentication/PagePoint";
@@ -27,11 +27,39 @@ interface Props {
   onIncreasePageNum: () => void;
 }
 
+interface IProfileForm {
+  thumbnail: File | null;
+  name: string;
+}
+
 export const SignUpProfileView: FC<Props> = ({ onIncreasePageNum }) => {
+  const [thumbnail, setThumbnail] = useState<string | undefined>();
+  const [profileForm, setProfileForm] = useState<IProfileForm>({
+    thumbnail: null,
+    name: "",
+  });
+
+  const onChangeProfileImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || !e.target.value) return;
+
+    const reader = new FileReader();
+
+    setProfileForm({
+      ...profileForm,
+      thumbnail: e.target?.files[0],
+    });
+
+    reader.onload = function (e) {
+      setThumbnail(e.target?.result?.toString());
+    }
+
+    reader.readAsDataURL(e.target.files[0]);
+  }
+
   return (
     <SContainer>
       <SInputFormWrapper>
-        <SetProfile />
+        <SetProfile onChange={onChangeProfileImg} thumbnail={thumbnail} />
         <InputForm type="text" title="이름" placeholder="이름을 입력하세요" />
       </SInputFormWrapper>
       <SubmitButton text="회원가입" onClick={onIncreasePageNum} />
