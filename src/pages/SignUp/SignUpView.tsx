@@ -5,7 +5,8 @@ import SignUpForm from "./SignUpForm";
 import SignUpValidation from "./SignUpValidation";
 import SignUpProfile from "./SignUpProfile";
 import { Title } from "../../components/Authentication/Title";
-import { REGISTER_CHILDREN } from "../../navigation/CONSTANTS";
+import { REGISTER_CHILDREN, SIGN_IN } from "../../navigation/CONSTANTS";
+import { BackButton } from "../../components/Authentication/BackButton";
 
 const SContainer = styled.div`
   width: 36vw;
@@ -13,7 +14,7 @@ const SContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 14.8vh;
+  padding-top: 4.2vh;
   box-sizing: border-box;
 `;
 
@@ -22,8 +23,13 @@ export const SignUpView: FC = () => {
   const [pageNum, setPageNum] = useState<number>(1);
 
   useEffect(() => {
+    if (pageNum === 0) history.push(SIGN_IN);
     if (pageNum === 4) history.push(REGISTER_CHILDREN);
   }, [pageNum, history]);
+
+  const onDecreasePageNum = () => {
+    setPageNum((prev) => prev - 1);
+  }
 
   const onIncreasePageNum = () => {
     setPageNum((prev) => prev + 1);
@@ -31,6 +37,7 @@ export const SignUpView: FC = () => {
 
   return (
     <SContainer>
+      <BackButton onClick={onDecreasePageNum} />
       <Title>회원가입</Title>
       {pageNum === 1 ? (
         <SignUpForm onIncreasePageNum={onIncreasePageNum} />
