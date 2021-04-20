@@ -1,8 +1,9 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { InputForm } from "../../../components/Authentication/InputForm";
 import { PagePoint } from "../../../components/Authentication/PagePoint";
 import { SubmitButton } from "../../../components/Authentication/SubmitButton";
+import { IValidationError } from "../../../hooks/domain/useSignUp/useSignUpValidation/payload";
 
 const SContainer = styled.div`
   width: 100%;
@@ -34,20 +35,21 @@ const STitle = styled.h3`
   font-size: 1.1vw;
 `;
 
-const SInputWrapper = styled.div`
+const SInputWrapper = styled.div<{ isError: boolean }>`
   width: 100%;
   height: 6vh;
-  border: 1px solid #d2d2d2;
+  border: 1px solid ${(props) => props.isError ? "#D0463B" : "#d2d2d2"};
   display: flex;
   outline: none;
   border-radius: 3px;
 `;
 
-const SInputBox = styled.input`
+const SInputBox = styled.input<{ isError: boolean }>`
   width: 80%;
   height: 100%;
   font-size: 1.1vw;
   padding-left: 0.8vw;
+  color: ${props => props.isError ? "#D0463B" : "#000"};
   box-sizing: border-box;
   border: none;
   outline: none;
@@ -70,28 +72,49 @@ const SSendBox = styled.button`
 `;
 
 interface Props {
-  onIncreasePageNum: () => void;
+  isSentCertifyCode: boolean;
+  validationError: IValidationError;
+  onChangeValidationData: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClickSendCertifyCodeBtn: () => void;
+  onClickGetCertificationBtn: () => void;
 }
 
-export const SignUpValidationView: FC<Props> = ({ onIncreasePageNum }) => {
+export const SignUpValidationView: FC<Props> = ({
+  isSentCertifyCode,
+  validationError,
+  onChangeValidationData,
+  onClickSendCertifyCodeBtn,
+  onClickGetCertificationBtn
+}) => {
   return (
     <SContainer>
       <SInputFormWrapper>
         <SInputContainer>
           <STitle>문자인증</STitle>
-          <SInputWrapper>
-            <SInputBox placeholder="- 없이 전화번호를 입력해주세요" />
-            <SSendBox>전송</SSendBox>
+          <SInputWrapper isError={validationError.phoneNumberError}>
+            <SInputBox
+              type="text"
+              name="phoneNumber"
+              placeholder="- 없이 전화번호를 입력해주세요"
+              onChange={onChangeValidationData}
+              isError={validationError.phoneNumberError}
+              autoComplete="off"
+            />
+            <SSendBox onClick={onClickSendCertifyCodeBtn}>전송</SSendBox>
           </SInputWrapper>
         </SInputContainer>
         <InputForm
           type="text"
           title="인증번호"
+          name="certifyCode"
           placeholder="인증번호를 입력하세요"
+          onChange={onChangeValidationData}
+          isVisible={isSentCertifyCode}
+          isError={validationError.certifyCodeError}
         />
         <SInputContainer />
       </SInputFormWrapper>
-      <SubmitButton text="다음" onClick={onIncreasePageNum} />
+      <SubmitButton text="다음" onClick={onClickGetCertificationBtn} />
       <PagePoint position={1} end={3} />
     </SContainer>
   );
