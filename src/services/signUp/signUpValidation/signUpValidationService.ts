@@ -1,9 +1,9 @@
-import { getRequest, IDefaultResponse } from "../default";
+import { getRequest, IDefaultResponse } from "../../default";
 import {
   SEND_CERTIFY_CODE,
   GET_CERTIFICATION,
   CREATE_PARENT_ACCOUNT,
-} from "../CONSTANTS";
+} from "../../CONSTANTS";
 import { ParentAccountForm } from "./payload";
 
 const request = getRequest();
