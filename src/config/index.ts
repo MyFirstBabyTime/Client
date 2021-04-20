@@ -9,10 +9,10 @@ interface Config {
 
 const config: Record<Environment, Config> = {
   [Environment.PRODUCTION]: {
-    apiHost: "54.180.165.105:8000",
+    apiHost: "http://54.180.165.105:8000",
   },
   [Environment.DEVELOPMENT]: {
-    apiHost: "54.180.165.105:8000",
+    apiHost: "http://54.180.165.105:8000",
   },
 };
 
