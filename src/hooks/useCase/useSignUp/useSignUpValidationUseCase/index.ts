@@ -1,7 +1,4 @@
-import {
-  sendCertifyCode,
-  getCertification,
-} from "../../../../services/signUp/signUpService";
+import { sendCertifyCode, getCertification } from "../../../../services";
 import { useSignUpValidation } from "../../../domain/useSignUp";
 
 const useSignUpValidationUseCase = () => {
