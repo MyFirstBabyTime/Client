@@ -1,1 +1,1 @@
-export { SignUpValidationView as default } from "./SignUpValidationView";
+export { SignUpValidationContainer as default } from "./SignUpValidationContainer";
