@@ -40,9 +40,9 @@ export const SignUpView: FC = () => {
       <BackButton onClick={onDecreasePageNum} />
       <Title>회원가입</Title>
       {pageNum === 1 ? (
-        <SignUpForm onIncreasePageNum={onIncreasePageNum} />
-      ) : pageNum === 2 ? (
         <SignUpValidation onIncreasePageNum={onIncreasePageNum} />
+      ) : pageNum === 2 ? (
+        <SignUpForm onIncreasePageNum={onIncreasePageNum} />
       ) : pageNum === 3 ? (
         <SignUpProfile onIncreasePageNum={onIncreasePageNum} />
       ) : (
