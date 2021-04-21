@@ -1,1 +1,1 @@
-export { SignUpProfileView as default } from "./SignUpProfileView";
+export { SignUpProfileContainer as default } from "./SignUpProfileContainer";
