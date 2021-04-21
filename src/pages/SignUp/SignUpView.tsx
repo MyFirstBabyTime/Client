@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import SignUpForm from "./SignUpForm";
@@ -7,6 +7,7 @@ import SignUpProfile from "./SignUpProfile";
 import { Title } from "../../components/Authentication/Title";
 import { REGISTER_CHILDREN, SIGN_IN } from "../../navigation/CONSTANTS";
 import { BackButton } from "../../components/Authentication/BackButton";
+import { SignUpContext } from "../../contexts/SignUpContext";
 
 const SContainer = styled.div`
   width: 36vw;
@@ -20,31 +21,23 @@ const SContainer = styled.div`
 
 export const SignUpView: FC = () => {
   const history = useHistory();
-  const [pageNum, setPageNum] = useState<number>(1);
+  const { pageNum, onDecreasePageNum } = useContext(SignUpContext);
 
   useEffect(() => {
     if (pageNum === 0) history.push(SIGN_IN);
     if (pageNum === 4) history.push(REGISTER_CHILDREN);
   }, [pageNum, history]);
 
-  const onDecreasePageNum = () => {
-    setPageNum((prev) => prev - 1);
-  }
-
-  const onIncreasePageNum = () => {
-    setPageNum((prev) => prev + 1);
-  };
-
   return (
     <SContainer>
       <BackButton onClick={onDecreasePageNum} />
       <Title>회원가입</Title>
       {pageNum === 1 ? (
-        <SignUpValidation onIncreasePageNum={onIncreasePageNum} />
+        <SignUpValidation />
       ) : pageNum === 2 ? (
-        <SignUpForm onIncreasePageNum={onIncreasePageNum} />
+        <SignUpForm />
       ) : pageNum === 3 ? (
-        <SignUpProfile onIncreasePageNum={onIncreasePageNum} />
+        <SignUpProfile />
       ) : (
         ""
       )}
