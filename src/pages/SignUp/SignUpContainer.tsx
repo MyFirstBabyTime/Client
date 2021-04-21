@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { Background } from "../../components/Authentication/Background";
+import SignUpContextProvider from "../../contexts/SignUpContext";
 import { SignUpView } from "./SignUpView";
 
 const SContainer = styled.div`
@@ -11,9 +12,11 @@ const SContainer = styled.div`
 
 export const SignUpContainer: FC = () => {
   return (
-    <SContainer>
-      <Background />
-      <SignUpView />
-    </SContainer>
+    <SignUpContextProvider>
+      <SContainer>
+        <Background />
+        <SignUpView />
+      </SContainer>
+    </SignUpContextProvider>
   );
 };
