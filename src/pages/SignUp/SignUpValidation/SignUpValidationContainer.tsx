@@ -1,29 +1,34 @@
-import React, { FC } from 'react';
+import { FC, useContext, ChangeEvent } from 'react';
+import { SignUpContext } from '../../../contexts/SignUpContext';
 import useSignUpValidationUseCase from '../../../hooks/useCase/useSignUp/useSignUpValidationUseCase';
 import { SignUpValidationView } from './SignUpValidationView';
 
-interface Props {
-    onIncreasePageNum: () => void;
-}
-
-export const SignUpValidationContainer: FC<Props> = ({ onIncreasePageNum }) => {
+export const SignUpValidationContainer: FC = () => {
+    const { onIncreasePageNum } = useContext(SignUpContext);
     const {
         state: { isSentCertifyCode, validationData, validationError },
         setState: { setValidationData, setValidationError },
         useCase: { sendCertifyCodeUseCase, getCertificationUseCase }
     } = useSignUpValidationUseCase();
 
-    const onChangeValidationData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeValidationData = (e: ChangeEvent<HTMLInputElement>) => {
         setValidationData({
             ...validationData,
             [e.target.name]: e.target.value,
         });
-
-        console.log(typeof validationData.certifyCode);
     }
 
     const onClickSendCertifyCodeBtn = () => {
+        // 숫자가 아닌경우
         if (isNaN(parseInt(validationData.phoneNumber))) {
+            setValidationError({
+                ...validationError,
+                phoneNumberError: true
+            });
+            return;
+        }
+        // 11자리가 아닌 경우
+        if (validationData.phoneNumber.length !== 11) {
             setValidationError({
                 ...validationError,
                 phoneNumberError: true
@@ -38,8 +43,9 @@ export const SignUpValidationContainer: FC<Props> = ({ onIncreasePageNum }) => {
         sendCertifyCodeUseCase();
     }
 
-    const onClickGetCertificationBtn = () => {
-        if (isNaN(validationData.certifyCode)) {
+    const onClickGetCertificationBtn = async () => {
+        // 숫자가 아닌 경우
+        if (isNaN(parseInt(validationData.certifyCode))) {
             setValidationError({
                 ...validationError,
                 certifyCodeError: true
