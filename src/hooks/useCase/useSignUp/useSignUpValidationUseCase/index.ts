@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { sendCertifyCode, getCertification } from "../../../../services";
 import { useSignUpValidation } from "../../../domain/useSignUp";
+import { SignUpContext } from "../../../../contexts/SignUpContext";
 
 const useSignUpValidationUseCase = () => {
+  const { onIncreasePageNum } = useContext(SignUpContext);
   const {
     state: { isSentCertifyCode, validationData, validationError },
     setState: { setIsSentCertifyCode, setValidationData, setValidationError },
@@ -11,19 +14,15 @@ const useSignUpValidationUseCase = () => {
     await sendCertifyCode(validationData.phoneNumber).then(
       (res) => {
         setIsSentCertifyCode(true);
-        setValidationError({
-          phoneNumberError: false,
-          certifyCodeError: false,
-        });
         Promise.resolve(res);
       },
       (err) => {
         switch (err.response.status) {
           case 400:
-            window.alert("올바르지 않은 전화번호 형식입니다.");
+            alert("올바르지 않은 전화번호 형식입니다.");
             break;
           case 409:
-            window.alert("이 전화번호로 가입된 계정이 존재합니다.");
+            alert("이 전화번호로 가입된 계정이 존재합니다.");
             break;
           default:
             break;
@@ -38,14 +37,35 @@ const useSignUpValidationUseCase = () => {
   };
 
   const getCertificationUseCase = async () => {
-    await getCertification(
-      validationData.phoneNumber,
-      validationData.certifyCode
-    ).then(
+    await getCertification(validationData).then(
       (res) => {
+        onIncreasePageNum();
         Promise.resolve(res);
       },
       (err) => {
+        switch (err.response.status) {
+          case 400:
+            alert("올바르지 않은 형식입니다.");
+            break;
+          case 409:
+            switch (err.response.data.code) {
+              case -111:
+                alert("이미 인증된 전화번호입니다.");
+                break;
+              case -112:
+                alert("올바르지 않은 인증 코드입니다.");
+                break;
+              default:
+                break;
+            }
+            break;
+          default:
+            break;
+        }
+        setValidationError({
+          ...validationError,
+          certifyCodeError: true,
+        });
         Promise.reject(err);
       }
     );
