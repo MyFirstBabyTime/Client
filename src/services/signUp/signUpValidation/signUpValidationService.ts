@@ -5,6 +5,7 @@ import {
   CREATE_PARENT_ACCOUNT,
 } from "../../CONSTANTS";
 import { ParentAccountForm } from "./payload";
+import { IValidationData } from "../../../hooks/domain/useSignUp/useSignUpValidation/payload";
 
 const request = getRequest();
 
@@ -23,14 +24,13 @@ export const sendCertifyCode = async (
 };
 
 export const getCertification = async (
-  phoneNumber: string,
-  certifyCode: number
+  data: IValidationData
 ): Promise<IDefaultResponse | undefined> => {
   try {
     const res = await request.post<IDefaultResponse>(
-      GET_CERTIFICATION(phoneNumber),
+      GET_CERTIFICATION(data.phoneNumber),
       {
-        certify_code: certifyCode,
+        certify_code: parseInt(data.certifyCode),
       }
     );
 
