@@ -2,10 +2,10 @@ import { useState } from "react";
 import { IValidationData, IValidationError } from "./payload";
 
 export const useSignUpValidation = () => {
-  const [isSentCertifyCode, setIsSentCertifyCode] = useState<boolean>(true);
+  const [isSentCertifyCode, setIsSentCertifyCode] = useState<boolean>(false);
   const [validationData, setValidationData] = useState<IValidationData>({
     phoneNumber: "",
-    certifyCode: 0,
+    certifyCode: "",
   });
   const [validationError, setValidationError] = useState<IValidationError>({
     phoneNumberError: false,
