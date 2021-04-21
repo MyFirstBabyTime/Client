@@ -1,10 +1,8 @@
-import { FC, useContext, ChangeEvent } from 'react';
-import { SignUpContext } from '../../../contexts/SignUpContext';
+import { FC, ChangeEvent } from 'react';
 import useSignUpValidationUseCase from '../../../hooks/useCase/useSignUp/useSignUpValidationUseCase';
 import { SignUpValidationView } from './SignUpValidationView';
 
 export const SignUpValidationContainer: FC = () => {
-    const { onIncreasePageNum } = useContext(SignUpContext);
     const {
         state: { isSentCertifyCode, validationData, validationError },
         setState: { setValidationData, setValidationError },
