@@ -1,6 +1,6 @@
 export interface IValidationData {
   phoneNumber: string;
-  certifyCode: number;
+  certifyCode: string;
 }
 
 export interface IValidationError {
