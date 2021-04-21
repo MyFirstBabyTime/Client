@@ -1,10 +1,9 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+import { SignUpContext } from '../../../contexts/SignUpContext';
 import { SignUpProfileView } from './SignUpProfileView';
 
-interface Props {
-    onIncreasePageNum: () => void;
-}
+export const SignUpProfileContainer: FC = () => {
+    const { onIncreasePageNum } = useContext(SignUpContext);
 
-export const SignUpProfileContainer: FC<Props> = ({ onIncreasePageNum }) => {
     return <SignUpProfileView onIncreasePageNum={onIncreasePageNum} />
 }
