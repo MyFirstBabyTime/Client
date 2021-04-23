@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import styled from "styled-components";
 import { InputForm } from "../../../components/Authentication/InputForm";
 import { PagePoint } from "../../../components/Authentication/PagePoint";
@@ -23,16 +23,18 @@ const SInputFormWrapper = styled.div`
   justify-content: space-between;
 `;
 
-interface Props {
-  onIncreasePageNum: () => void;
-}
-
 interface IProfileForm {
   thumbnail: File | null;
   name: string;
 }
 
-export const SignUpProfileView: FC<Props> = ({ onIncreasePageNum }) => {
+interface Props {
+  onChangeName: (e: ChangeEvent<HTMLInputElement>) => void;
+  nameError: boolean;
+  onClickSignUpBtn: () => void;
+}
+
+export const SignUpProfileView: FC<Props> = ({ onChangeName, nameError, onClickSignUpBtn }) => {
   const [thumbnail, setThumbnail] = useState<string | undefined>();
   const [profileForm, setProfileForm] = useState<IProfileForm>({
     thumbnail: null,
@@ -60,9 +62,9 @@ export const SignUpProfileView: FC<Props> = ({ onIncreasePageNum }) => {
     <SContainer>
       <SInputFormWrapper>
         <SetProfile onChange={onChangeProfileImg} thumbnail={thumbnail} />
-        <InputForm type="text" title="이름" placeholder="이름을 입력하세요" />
+        <InputForm type="text" title="이름" placeholder="이름을 입력하세요" isError={nameError} onChange={onChangeName} />
       </SInputFormWrapper>
-      <SubmitButton text="회원가입" onClick={onIncreasePageNum} />
+      <SubmitButton text="회원가입" onClick={onClickSignUpBtn} />
       <PagePoint position={3} end={3} />
     </SContainer>
   );
