@@ -4,8 +4,11 @@ import { useSignUpForm } from '../../../hooks/domain/useSignUp';
 import { SignUpFormView } from './SignUpFormView';
 
 export const SignUpFormContainer: FC = () => {
-    const { state: { formData, idError, pwError, pwConfirmError }, setState: { setFormData, setIdError, setPwError, setPwConfirmError } } = useSignUpForm();
-    const { onIncreasePageNum } = useContext(SignUpContext);
+    const {
+        state: { formData, idError, pwError, pwConfirmError },
+        setState: { setFormData, setIdError, setPwError, setPwConfirmError }
+    } = useSignUpForm();
+    const { onIncreasePageNum, setContextId, setContextPw } = useContext(SignUpContext);
 
     const onChangeFormData = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -16,6 +19,8 @@ export const SignUpFormContainer: FC = () => {
 
     const onClickNextBtn = () => {
         if (callFormatCheckFuncs()) return;
+        setContextId(formData.id);
+        setContextPw(formData.pw);
         onIncreasePageNum();
     }
 
