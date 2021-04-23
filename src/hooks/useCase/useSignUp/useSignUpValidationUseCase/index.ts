@@ -4,7 +4,7 @@ import { useSignUpValidation } from "../../../domain/useSignUp";
 import { SignUpContext } from "../../../../contexts/SignUpContext";
 
 const useSignUpValidationUseCase = () => {
-  const { onIncreasePageNum } = useContext(SignUpContext);
+  const { onIncreasePageNum, setContextPhoneNum } = useContext(SignUpContext);
   const {
     state: { isSentCertifyCode, validationData, validationError },
     setState: { setIsSentCertifyCode, setValidationData, setValidationError },
@@ -39,6 +39,7 @@ const useSignUpValidationUseCase = () => {
   const getCertificationUseCase = async () => {
     await getCertification(validationData).then(
       (res) => {
+        setContextPhoneNum(validationData.phoneNumber);
         onIncreasePageNum();
         Promise.resolve(res);
       },
