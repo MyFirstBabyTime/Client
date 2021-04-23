@@ -101,7 +101,7 @@ export const SignUpValidationView: FC<Props> = ({
               disabled={isSentCertifyCode}
               autoComplete="off"
             />
-            <SSendBox onClick={onClickSendCertifyCodeBtn}>전송</SSendBox>
+            <SSendBox onClick={onClickSendCertifyCodeBtn} disabled={isSentCertifyCode}>전송</SSendBox>
           </SInputWrapper>
         </SInputContainer>
         <InputForm
