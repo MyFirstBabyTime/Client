@@ -98,6 +98,7 @@ export const SignUpValidationView: FC<Props> = ({
               placeholder="- 없이 전화번호를 입력해주세요"
               onChange={onChangeValidationData}
               isError={validationError.phoneNumberError}
+              disabled={isSentCertifyCode}
               autoComplete="off"
             />
             <SSendBox onClick={onClickSendCertifyCodeBtn}>전송</SSendBox>
