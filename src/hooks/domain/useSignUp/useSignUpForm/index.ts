@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IFormData, IFormError } from "./payload";
+import { IFormData } from "./payload";
 
 export const useSignUpForm = () => {
   const [formData, setFormData] = useState<IFormData>({
@@ -7,20 +7,22 @@ export const useSignUpForm = () => {
     pw: "",
     pwConfirm: "",
   });
-  const [formError, setFormError] = useState<IFormError>({
-    idError: false,
-    pwError: false,
-    pwConfirmError: false,
-  });
+  const [idError, setIdError] = useState<boolean>(false);
+  const [pwError, setPwError] = useState<boolean>(false);
+  const [pwConfirmError, setPwConfirmError] = useState<boolean>(false);
 
   return {
     state: {
       formData,
-      formError,
+      idError,
+      pwError,
+      pwConfirmError,
     },
     setState: {
       setFormData,
-      setFormError,
+      setIdError,
+      setPwError,
+      setPwConfirmError,
     },
   };
 };
