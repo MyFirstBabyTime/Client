@@ -1,9 +1,25 @@
-import { FC, useContext } from 'react';
-import { SignUpContext } from '../../../contexts/SignUpContext';
+import { ChangeEvent, FC } from 'react';
+import useSignUpProfileUseCase from '../../../hooks/useCase/useSignUp/useSignUpProfileUseCase';
 import { SignUpProfileView } from './SignUpProfileView';
 
 export const SignUpProfileContainer: FC = () => {
-    const { onIncreasePageNum } = useContext(SignUpContext);
+    const {
+        state: { name, nameError },
+        setState: { setName, setNameError },
+        useCase: { createParentAccountUseCase }
+    } = useSignUpProfileUseCase();
 
-    return <SignUpProfileView onIncreasePageNum={onIncreasePageNum} />
+    const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+    }
+
+    const onClickSignUpBtn = () => {
+        if (name.length > 10) {
+            setNameError(true);
+            return;
+        }
+        createParentAccountUseCase();
+    }
+
+    return <SignUpProfileView onChangeName={onChangeName} nameError={nameError} onClickSignUpBtn={onClickSignUpBtn} />
 }
