@@ -25,7 +25,6 @@ export const SignInConatiner: FC = () => {
   };
 
   const onClickSignInBtn = () => {
-    console.log(1);
     if (callFormatCheckFuncs()) return;
     signInUseCase();
   }
