@@ -10,8 +10,8 @@ const useSignUpProfileUseCase = () => {
     setState: { setName, setNameError },
   } = useSignUpProfile();
 
-  const createParentAccountUseCase = async () => {
-    await createParentAccount({
+  const createParentAccountUseCase = () => {
+    createParentAccount({
       id: id,
       pw: pw,
       name: name,

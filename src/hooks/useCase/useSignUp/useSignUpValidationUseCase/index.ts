@@ -10,8 +10,8 @@ const useSignUpValidationUseCase = () => {
     setState: { setIsSentCertifyCode, setValidationData, setValidationError },
   } = useSignUpValidation();
 
-  const sendCertifyCodeUseCase = async () => {
-    await sendCertifyCode(validationData.phoneNumber).then(
+  const sendCertifyCodeUseCase = () => {
+    sendCertifyCode(validationData.phoneNumber).then(
       (res) => {
         setIsSentCertifyCode(true);
         Promise.resolve(res);
@@ -36,8 +36,8 @@ const useSignUpValidationUseCase = () => {
     );
   };
 
-  const getCertificationUseCase = async () => {
-    await getCertification(validationData).then(
+  const getCertificationUseCase = () => {
+    getCertification(validationData).then(
       (res) => {
         setContextPhoneNum(validationData.phoneNumber);
         onIncreasePageNum();

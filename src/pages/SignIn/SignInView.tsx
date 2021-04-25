@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { InputForm } from "../../components/Authentication/InputForm";
@@ -37,7 +37,14 @@ const SEmptyBox = styled.div`
   height: 9.5vh;
 `;
 
-export const SignInView: FC = () => {
+interface Props {
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  isIdError: boolean;
+  isPwError: boolean;
+  onClick: () => void;
+}
+
+export const SignInView: FC<Props> = ({ onChange, isIdError, isPwError, onClick }) => {
   return (
     <SContainer>
       <Title>로그인</Title>
@@ -45,16 +52,22 @@ export const SignInView: FC = () => {
         <InputForm
           type="text"
           title="아이디"
+          name="id"
           placeholder="아이디를 입력하세요"
+          isError={isIdError}
+          onChange={onChange}
         />
         <InputForm
           type="password"
           title="비밀번호"
+          name="pw"
           placeholder="비밀번호를 입력하세요"
+          isError={isPwError}
+          onChange={onChange}
         />
         <SEmptyBox />
       </SInputFormWrapper>
-      <SubmitButton text="로그인" />
+      <SubmitButton text="로그인" onClick={onClick} />
       <SLinkToSignUp to="/sign-up">회원가입하기</SLinkToSignUp>
     </SContainer>
   );

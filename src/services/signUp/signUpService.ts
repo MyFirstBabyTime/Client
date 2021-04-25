@@ -1,11 +1,11 @@
-import { getRequest, IDefaultResponse } from "../../default";
+import { getRequest, IDefaultResponse } from "../default";
 import {
-  SEND_CERTIFY_CODE,
-  GET_CERTIFICATION,
-  CREATE_PARENT_ACCOUNT,
-} from "../../CONSTANTS";
-import { ParentAccountForm } from "./payload";
-import { IValidationData } from "../../../hooks/domain/useSignUp/useSignUpValidation/payload";
+  SIGN_UP_SEND_CERTIFY_CODE,
+  SIGN_UP_GET_CERTIFICATION,
+  SIGN_UP_CREATE_PARENT_ACCOUNT,
+} from "../CONSTANTS";
+import { IParentAccountForm } from "./payload";
+import { IValidationData } from "../../hooks/domain/useSignUp/useSignUpValidation/payload";
 
 const request = getRequest();
 
@@ -14,7 +14,7 @@ export const sendCertifyCode = async (
 ): Promise<IDefaultResponse | undefined> => {
   try {
     const res = await request.post<IDefaultResponse>(
-      SEND_CERTIFY_CODE(phoneNumber)
+      SIGN_UP_SEND_CERTIFY_CODE(phoneNumber)
     );
 
     return res.data;
@@ -28,7 +28,7 @@ export const getCertification = async (
 ): Promise<IDefaultResponse | undefined> => {
   try {
     const res = await request.post<IDefaultResponse>(
-      GET_CERTIFICATION(data.phoneNumber),
+      SIGN_UP_GET_CERTIFICATION(data.phoneNumber),
       {
         certify_code: parseInt(data.certifyCode),
       }
@@ -41,15 +41,18 @@ export const getCertification = async (
 };
 
 export const createParentAccount = async (
-  form: ParentAccountForm
+  form: IParentAccountForm
 ): Promise<IDefaultResponse | undefined> => {
   try {
-    const res = await request.post<IDefaultResponse>(CREATE_PARENT_ACCOUNT(), {
-      id: form.id,
-      pw: form.pw,
-      name: form.name,
-      phone_number: form.phoneNumber,
-    });
+    const res = await request.post<IDefaultResponse>(
+      SIGN_UP_CREATE_PARENT_ACCOUNT(),
+      {
+        id: form.id,
+        pw: form.pw,
+        name: form.name,
+        phone_number: form.phoneNumber,
+      }
+    );
 
     return res.data;
   } catch (error) {
