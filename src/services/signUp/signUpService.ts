@@ -4,8 +4,7 @@ import {
   SIGN_UP_GET_CERTIFICATION,
   SIGN_UP_CREATE_PARENT_ACCOUNT,
 } from "../CONSTANTS";
-import { IParentAccountForm } from "./payload";
-import { IValidationData } from "../../hooks/domain/useSignUp/useSignUpValidation/payload";
+import { IParentAccountForm, IValidationData } from "./payload";
 
 const request = getRequest();
 
