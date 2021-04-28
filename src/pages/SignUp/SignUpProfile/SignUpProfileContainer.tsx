@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from 'react';
-import useSignUpProfileUseCase from '../../../hooks/useCase/useSignUp/useSignUpProfileUseCase';
+import useSignUpProfileUseCase from '../../../hooks/useCase/useSignUpUseCase/useSignUpProfileUseCase';
 import { SignUpProfileView } from './SignUpProfileView';
 
 export const SignUpProfileContainer: FC = () => {
