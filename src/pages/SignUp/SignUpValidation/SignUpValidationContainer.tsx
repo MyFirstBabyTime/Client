@@ -1,5 +1,5 @@
 import { FC, ChangeEvent } from 'react';
-import useSignUpValidationUseCase from '../../../hooks/useCase/useSignUp/useSignUpValidationUseCase';
+import useSignUpValidationUseCase from '../../../hooks/useCase/useSignUpUseCase/useSignUpValidationUseCase';
 import { SignUpValidationView } from './SignUpValidationView';
 
 export const SignUpValidationContainer: FC = () => {
