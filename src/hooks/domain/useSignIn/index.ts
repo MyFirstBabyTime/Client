@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ISignInError, ISignInForm } from "./payload";
+import { ISignInForm } from "./payload";
 
 export const useSignIn = () => {
   const [signInForm, setSignInForm] = useState<ISignInForm>({
