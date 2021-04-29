@@ -6,16 +6,17 @@ import { SignUpContext } from "../../../../contexts/SignUpContext";
 const useSignUpProfileUseCase = () => {
   const { id, pw, phoneNum, onIncreasePageNum } = useContext(SignUpContext);
   const {
-    state: { name, nameError },
-    setState: { setName, setNameError },
+    state: { profileData, nameError },
+    setState: { setProfileData, setNameError },
   } = useSignUpProfile();
 
   const createParentAccountUseCase = () => {
     createParentAccount({
       id: id,
       pw: pw,
-      name: name,
+      name: profileData.name,
       phoneNumber: phoneNum,
+      profile: profileData.profile,
     }).then(
       (res) => {
         getTokenUseCase();
@@ -84,11 +85,11 @@ const useSignUpProfileUseCase = () => {
 
   return {
     state: {
-      name,
+      profileData,
       nameError,
     },
     setState: {
-      setName,
+      setProfileData,
       setNameError,
     },
     useCase: {
