@@ -43,14 +43,16 @@ export const createParentAccount = async (
   form: IParentAccountForm
 ): Promise<IDefaultResponse | undefined> => {
   try {
+    const formData = new FormData();
+    formData.append("id", form.id);
+    formData.append("pw", form.pw);
+    formData.append("name", form.name);
+    formData.append("phone_number", form.phoneNumber);
+    if (form.profile) formData.append("profile", form.profile);
+
     const res = await request.post<IDefaultResponse>(
       SIGN_UP_CREATE_PARENT_ACCOUNT(),
-      {
-        id: form.id,
-        pw: form.pw,
-        name: form.name,
-        phone_number: form.phoneNumber,
-      }
+      formData
     );
 
     return res.data;
