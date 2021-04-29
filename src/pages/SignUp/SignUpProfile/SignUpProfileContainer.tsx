@@ -1,25 +1,46 @@
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import useSignUpProfileUseCase from '../../../hooks/useCase/useSignUpUseCase/useSignUpProfileUseCase';
 import { SignUpProfileView } from './SignUpProfileView';
 
 export const SignUpProfileContainer: FC = () => {
+    const [thumbnail, setThumbnail] = useState<string | undefined>();
     const {
-        state: { name, nameError },
-        setState: { setName, setNameError },
+        state: { profileData, nameError },
+        setState: { setProfileData, setNameError },
         useCase: { createParentAccountUseCase }
     } = useSignUpProfileUseCase();
 
+    const onChangeProfileImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || !e.target.value) return;
+
+        const reader = new FileReader();
+
+        setProfileData({
+            ...profileData,
+            profile: e.target?.files[0],
+        });
+
+        reader.onload = function (e) {
+            setThumbnail(e.target?.result?.toString());
+        }
+
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value);
+        setProfileData({
+            ...profileData,
+            name: e.target.value
+        });
     }
 
     const onClickSignUpBtn = () => {
-        if (name.length > 10) {
+        if (profileData.name.length > 10) {
             setNameError(true);
             return;
         }
         createParentAccountUseCase();
     }
 
-    return <SignUpProfileView onChangeName={onChangeName} nameError={nameError} onClickSignUpBtn={onClickSignUpBtn} />
+    return <SignUpProfileView onChangeProfileImg={onChangeProfileImg} thumbnail={thumbnail} onChangeName={onChangeName} nameError={nameError} onClickSignUpBtn={onClickSignUpBtn} />
 }
