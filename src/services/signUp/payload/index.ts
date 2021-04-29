@@ -8,4 +8,5 @@ export interface IParentAccountForm {
   pw: string;
   name: string;
   phoneNumber: string;
+  profile?: File | null;
 }
