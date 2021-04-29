@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC } from "react";
 import styled from "styled-components";
 import { InputForm } from "../../../components/Authentication/InputForm";
 import { PagePoint } from "../../../components/Authentication/PagePoint";
@@ -23,41 +23,15 @@ const SInputFormWrapper = styled.div`
   justify-content: space-between;
 `;
 
-interface IProfileForm {
-  thumbnail: File | null;
-  name: string;
-}
-
 interface Props {
+  onChangeProfileImg: (e: ChangeEvent<HTMLInputElement>) => void;
+  thumbnail: string | undefined;
   onChangeName: (e: ChangeEvent<HTMLInputElement>) => void;
   nameError: boolean;
   onClickSignUpBtn: () => void;
 }
 
-export const SignUpProfileView: FC<Props> = ({ onChangeName, nameError, onClickSignUpBtn }) => {
-  const [thumbnail, setThumbnail] = useState<string | undefined>();
-  const [profileForm, setProfileForm] = useState<IProfileForm>({
-    thumbnail: null,
-    name: "",
-  });
-
-  const onChangeProfileImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || !e.target.value) return;
-
-    const reader = new FileReader();
-
-    setProfileForm({
-      ...profileForm,
-      thumbnail: e.target?.files[0],
-    });
-
-    reader.onload = function (e) {
-      setThumbnail(e.target?.result?.toString());
-    }
-
-    reader.readAsDataURL(e.target.files[0]);
-  }
-
+export const SignUpProfileView: FC<Props> = ({ onChangeProfileImg, thumbnail, onChangeName, nameError, onClickSignUpBtn }) => {
   return (
     <SContainer>
       <SInputFormWrapper>
