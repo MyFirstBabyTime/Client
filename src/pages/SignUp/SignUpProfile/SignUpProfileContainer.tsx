@@ -1,12 +1,11 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC } from 'react';
 import useSignUpProfileUseCase from '../../../hooks/useCase/useSignUpUseCase/useSignUpProfileUseCase';
 import { SignUpProfileView } from './SignUpProfileView';
 
 export const SignUpProfileContainer: FC = () => {
-    const [thumbnail, setThumbnail] = useState<string | undefined>();
     const {
-        state: { profileData, nameError },
-        setState: { setProfileData, setNameError },
+        state: { thumbnail, profileData, nameError },
+        setState: { setThumbnail, setProfileData, setNameError },
         useCase: { createParentAccountUseCase }
     } = useSignUpProfileUseCase();
 
