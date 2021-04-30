@@ -6,8 +6,8 @@ import { SignUpContext } from "../../../../contexts/SignUpContext";
 const useSignUpProfileUseCase = () => {
   const { id, pw, phoneNum, onIncreasePageNum } = useContext(SignUpContext);
   const {
-    state: { profileData, nameError },
-    setState: { setProfileData, setNameError },
+    state: { thumbnail, profileData, nameError },
+    setState: { setThumbnail, setProfileData, setNameError },
   } = useSignUpProfile();
 
   const createParentAccountUseCase = () => {
@@ -84,17 +84,9 @@ const useSignUpProfileUseCase = () => {
   };
 
   return {
-    state: {
-      profileData,
-      nameError,
-    },
-    setState: {
-      setProfileData,
-      setNameError,
-    },
-    useCase: {
-      createParentAccountUseCase,
-    },
+    state: { thumbnail, profileData, nameError },
+    setState: { setThumbnail, setProfileData, setNameError },
+    useCase: { createParentAccountUseCase },
   };
 };
 
