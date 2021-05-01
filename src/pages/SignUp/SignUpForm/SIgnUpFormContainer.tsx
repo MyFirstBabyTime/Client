@@ -1,14 +1,15 @@
 import { ChangeEvent, FC, useContext } from 'react';
 import { SignUpContext } from '../../../contexts/SignUpContext';
-import { useSignUpForm } from '../../../hooks/domain/useSignUp';
+import useSignUpFormUseCase from '../../../hooks/useCase/useSignUpUseCase/useSignUpFormUseCase';
 import { SignUpFormView } from './SignUpFormView';
 
 export const SignUpFormContainer: FC = () => {
     const {
         state: { formData, idError, pwError, pwConfirmError },
-        setState: { setFormData, setIdError, setPwError, setPwConfirmError }
-    } = useSignUpForm();
-    const { onIncreasePageNum, setContextId, setContextPw } = useContext(SignUpContext);
+        setState: { setFormData, setIdError, setPwError, setPwConfirmError },
+        useCase: { checkIdDuplicationUseCase }
+    } = useSignUpFormUseCase();
+    const { setContextId, setContextPw } = useContext(SignUpContext);
 
     const onChangeFormData = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -21,7 +22,7 @@ export const SignUpFormContainer: FC = () => {
         if (callFormatCheckFuncs()) return;
         setContextId(formData.id);
         setContextPw(formData.pw);
-        onIncreasePageNum();
+        checkIdDuplicationUseCase();
     }
 
     const callFormatCheckFuncs = (): boolean => {
