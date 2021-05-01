@@ -3,6 +3,7 @@ import {
   SIGN_UP_SEND_CERTIFY_CODE,
   SIGN_UP_GET_CERTIFICATION,
   SIGN_UP_CREATE_PARENT_ACCOUNT,
+  SIGN_UP_CHECK_ID_DUPLICATION,
 } from "../CONSTANTS";
 import { IParentAccountForm, IValidationData } from "./payload";
 
@@ -31,6 +32,20 @@ export const getCertification = async (
       {
         certify_code: parseInt(data.certifyCode),
       }
+    );
+
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const checkIdDuplication = async (
+  id: string
+): Promise<IDefaultResponse | undefined> => {
+  try {
+    const res = await request.get<IDefaultResponse>(
+      SIGN_UP_CHECK_ID_DUPLICATION(id)
     );
 
     return res.data;
