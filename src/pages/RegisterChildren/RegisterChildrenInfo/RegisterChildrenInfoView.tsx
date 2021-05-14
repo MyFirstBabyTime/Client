@@ -25,11 +25,7 @@ const SInputFormWrapper = styled.div`
   justify-content: space-between;
 `;
 
-interface Props {
-  onIncreasePageNum: () => void;
-}
-
-export const RegisterChildrenInfoView: FC<Props> = ({ onIncreasePageNum }) => {
+export const RegisterChildrenInfoView: FC = () => {
   return (
     <SContainer>
       <SInputFormWrapper>
@@ -41,7 +37,7 @@ export const RegisterChildrenInfoView: FC<Props> = ({ onIncreasePageNum }) => {
         <ChildBirthday />
         <ChildGender />
       </SInputFormWrapper>
-      <SubmitButton text="다음" onClick={onIncreasePageNum} />
+      <SubmitButton text="다음" />
       <WarningText />
       <PagePoint position={1} end={2} />
     </SContainer>
