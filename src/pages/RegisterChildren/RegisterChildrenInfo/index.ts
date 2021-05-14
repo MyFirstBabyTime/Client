@@ -1,1 +1,1 @@
-export { RegisterChildrenInfoView as default } from "./RegisterChildrenInfoView";
+export { RegisterChildrenInfoContainer as default } from "./RegisterChildrenInfoContainer";
