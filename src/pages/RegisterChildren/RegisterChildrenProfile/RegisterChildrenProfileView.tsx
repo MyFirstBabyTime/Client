@@ -23,13 +23,7 @@ const SInputFormWrapper = styled.div`
   justify-content: space-between;
 `;
 
-interface Props {
-  onIncreasePageNum: () => void;
-}
-
-export const RegisterChildrenProfileView: FC<Props> = ({
-  onIncreasePageNum,
-}) => {
+export const RegisterChildrenProfileView: FC = () => {
   const [thumbnail, setThumbnail] = useState<string | undefined>();
   const [profileThumbnail, setProfileThumbnail] = useState<File | null>(null);
 
@@ -52,7 +46,7 @@ export const RegisterChildrenProfileView: FC<Props> = ({
       <SInputFormWrapper>
         <SetProfile onChange={onChangeProfileImg} thumbnail={thumbnail} />
       </SInputFormWrapper>
-      <SubmitButton text="아이 등록하기" onClick={onIncreasePageNum} />
+      <SubmitButton text="아이 등록하기" />
       <WarningText />
       <PagePoint position={2} end={2} />
     </SContainer>
