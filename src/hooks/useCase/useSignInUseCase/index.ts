@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import { signIn } from "../../../services";
 import { useSignIn } from "../../domain/useSignIn";
+import { UserContext } from '../../../contexts/UserContext';
 
 const useSignInUseCase = () => {
+  const { setUuid } = useContext(UserContext);
   const {
     state: { signInForm, signInIdError, signInPwError },
     setState: { setSignInForm, setSignInIdError, setSignInPwError },
@@ -10,6 +13,7 @@ const useSignInUseCase = () => {
   const signInUseCase = () => {
     signIn({ id: signInForm.id, pw: signInForm.pw }).then(
       (res) => {
+        setUuid(res?.uuid ?? "");
         localStorage.setItem("token", res?.token ?? "");
         Promise.resolve(res);
       },
