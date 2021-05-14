@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { createParentAccount, signIn } from "../../../../services";
 import { useSignUpProfile } from "../../../domain/useSignUp";
 import { SignUpContext } from "../../../../contexts/SignUpContext";
+import { UserContext } from "../../../../contexts/UserContext";
 
 const useSignUpProfileUseCase = () => {
+  const { setUuid } = useContext(UserContext);
   const { id, pw, phoneNum, onIncreasePageNum } = useContext(SignUpContext);
   const {
     state: { thumbnail, profileData, nameError },
@@ -55,6 +57,7 @@ const useSignUpProfileUseCase = () => {
   const getTokenUseCase = () => {
     signIn({ id: id, pw: pw }).then(
       (res) => {
+        setUuid(res?.uuid ?? "");
         localStorage.setItem("token", res?.token ?? "");
         Promise.resolve(res);
       },
