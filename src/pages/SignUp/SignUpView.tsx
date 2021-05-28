@@ -1,10 +1,13 @@
-import { FC } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import styled from "styled-components";
 import SignUpForm from "./SignUpForm";
 import SignUpValidation from "./SignUpValidation";
 import SignUpProfile from "./SignUpProfile";
 import { Title } from "../../components/Authentication/Title";
 import { BackButton } from "../../components/Authentication/BackButton";
+import { REGISTER_CHILDREN, SIGN_IN } from '../../navigation/CONSTANTS';
+import { SignUpContext } from '../../contexts/SignUpContext';
+import { useHistory } from 'react-router';
 
 const SContainer = styled.div`
   width: 36vw;
@@ -16,12 +19,15 @@ const SContainer = styled.div`
   box-sizing: border-box;
 `;
 
-interface Props {
-  onDecreasePageNum: () => void;
-  pageNum: number;
-}
+export const SignUpView: FC = () => {
+  const history = useHistory();
+  const { pageNum, onDecreasePageNum } = useContext(SignUpContext);
 
-export const SignUpView: FC<Props> = ({ onDecreasePageNum, pageNum }) => {
+  useEffect(() => {
+    if (pageNum === 0) history.push(SIGN_IN);
+    if (pageNum === 4) history.push(REGISTER_CHILDREN);
+  }, [pageNum, history]);
+
   return (
     <SContainer>
       <BackButton onClick={onDecreasePageNum} />
