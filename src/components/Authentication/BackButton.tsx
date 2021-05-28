@@ -22,7 +22,7 @@ interface Props {
 
 export const BackButton: FC<Props> = ({ onClick }) => {
     return (
-        <SContainer onClick={onClick}>
+        <SContainer onClick={onClick} >
             <SBackButton src={BackButtonIcon} />
         </SContainer>
     )
