@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, ChangeEvent } from "react";
 import styled from "styled-components";
 import { SetProfile } from "../../../components/Authentication/SetProfile";
 import { SubmitButton } from "../../../components/Authentication/SubmitButton";
@@ -23,30 +23,19 @@ const SInputFormWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const RegisterChildrenProfileView: FC = () => {
-  const [thumbnail, setThumbnail] = useState<string | undefined>();
-  const [profileThumbnail, setProfileThumbnail] = useState<File | null>(null);
+interface Props {
+  onChangeProfileImg: (e: ChangeEvent<HTMLInputElement>) => void;
+  thumbnail: string | undefined;
+  onClickSubmitBtn: () => void;
+}
 
-  const onChangeProfileImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-
-    const reader = new FileReader();
-
-    setProfileThumbnail(e.target.files[0]);
-
-    reader.onload = function (e) {
-      setThumbnail(e.target?.result?.toString());
-    }
-
-    reader.readAsDataURL(e.target.files[0]);
-  }
-
+export const RegisterChildrenProfileView: FC<Props> = ({ onChangeProfileImg, thumbnail, onClickSubmitBtn }) => {
   return (
     <SContainer>
       <SInputFormWrapper>
         <SetProfile onChange={onChangeProfileImg} thumbnail={thumbnail} />
       </SInputFormWrapper>
-      <SubmitButton text="아이 등록하기" />
+      <SubmitButton text="아이 등록하기" onClick={onClickSubmitBtn} />
       <WarningText />
       <PagePoint position={2} end={2} />
     </SContainer>
