@@ -1,13 +1,13 @@
-import { FC, useContext, useEffect } from "react";
-import { useHistory } from "react-router";
+import { FC, useContext, useEffect } from 'react';
 import styled from "styled-components";
 import SignUpForm from "./SignUpForm";
 import SignUpValidation from "./SignUpValidation";
 import SignUpProfile from "./SignUpProfile";
 import { Title } from "../../components/Authentication/Title";
-import { REGISTER_CHILDREN, SIGN_IN } from "../../navigation/CONSTANTS";
 import { BackButton } from "../../components/Authentication/BackButton";
-import { SignUpContext } from "../../contexts/SignUpContext";
+import { REGISTER_CHILDREN, SIGN_IN } from '../../navigation/CONSTANTS';
+import { SignUpContext } from '../../contexts/SignUpContext';
+import { useHistory } from 'react-router';
 
 const SContainer = styled.div`
   width: 36vw;

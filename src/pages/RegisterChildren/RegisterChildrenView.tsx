@@ -1,10 +1,11 @@
-import { FC, useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { FC, useContext, useEffect } from "react";
 import styled from "styled-components";
 import RegisterChildrenInfo from "./RegisterChildrenInfo";
 import RegisterChildrenProfile from "./RegisterChildrenProfile";
 import { Title } from "../../components/Authentication/Title";
 import { BackButton } from "../../components/Authentication/BackButton";
+import { useHistory } from "react-router";
+import { RegisterChildrenContext } from "../../contexts/RegisterChildrenContext";
 import { SIGN_UP } from "../../navigation/CONSTANTS";
 
 const SContainer = styled.div`
@@ -19,29 +20,21 @@ const SContainer = styled.div`
 
 export const RegisterChildrenView: FC = () => {
   const history = useHistory();
-  const [pageNum, setPageNum] = useState<number>(1);
+  const { pageNum, onDecreasePageNum } = useContext(RegisterChildrenContext);
 
   useEffect(() => {
     if (pageNum === 0) history.push(SIGN_UP);
     if (pageNum === 3) history.push("/main");
   }, [pageNum, history]);
 
-  const onDecreasePageNum = () => {
-    setPageNum((prev) => prev - 1);
-  }
-
-  const onIncreasePageNum = () => {
-    setPageNum((prev) => prev + 1);
-  };
-
   return (
     <SContainer>
       <BackButton onClick={onDecreasePageNum} />
       <Title>내 아이 등록하기</Title>
       {pageNum === 1 ? (
-        <RegisterChildrenInfo onIncreasePageNum={onIncreasePageNum} />
+        <RegisterChildrenInfo />
       ) : pageNum === 2 ? (
-        <RegisterChildrenProfile onIncreasePageNum={onIncreasePageNum} />
+        <RegisterChildrenProfile />
       ) : (
         ""
       )}

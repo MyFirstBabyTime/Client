@@ -1,4 +1,4 @@
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useState, useRef } from "react";
 import styled from "styled-components";
 import { DAY_LIST, MONTH_LIST, YEAR_LIST } from "./DATE_CONSTANTS";
 
@@ -32,15 +32,21 @@ const SSelect = styled.select<{ width: number }>`
   box-sizing: border-box;
 `;
 
-export const ChildBirthday: FC = () => {
+interface Props {
+  onChange: (birth: string) => void;
+}
+
+export const ChildBirthday: FC<Props> = ({ onChange }) => {
   const [dayList, setDayList] = useState<Array<string>>([]);
   const yearRef = useRef<HTMLSelectElement>(null);
   const monthRef = useRef<HTMLSelectElement>(null);
   const dayRef = useRef<HTMLSelectElement>(null);
 
-  useEffect(() => {
+  const onChangeSelect = () => {
     controllDayArray();
-  }, []);
+    const birthString = `${yearRef.current?.value.split('년')[0]}-${monthRef.current?.value.split('월')[0].padStart(2, '0')}-${dayRef.current?.value.split('일')[0].padStart(2, '0')}`;
+    onChange(birthString);
+  }
 
   const controllDayArray = () => {
     if (["4월", "6월", "9월", "11월"].includes(monthRef.current?.value ?? "")) {
@@ -64,7 +70,7 @@ export const ChildBirthday: FC = () => {
     <SContainer>
       <STitle>생년월일</STitle>
       <SSelectWrapper>
-        <SSelect width={5} ref={yearRef} onChange={controllDayArray}>
+        <SSelect width={5} ref={yearRef} onChange={onChangeSelect}>
           {YEAR_LIST().map((item, index) => {
             return (
               <option key={index} value={item}>
@@ -73,7 +79,7 @@ export const ChildBirthday: FC = () => {
             );
           })}
         </SSelect>
-        <SSelect width={5} ref={monthRef} onChange={controllDayArray}>
+        <SSelect width={5} ref={monthRef} onChange={onChangeSelect}>
           {MONTH_LIST().map((item, index) => {
             return (
               <option key={index} value={item}>
@@ -82,7 +88,7 @@ export const ChildBirthday: FC = () => {
             );
           })}
         </SSelect>
-        <SSelect width={4} ref={dayRef}>
+        <SSelect width={4} ref={dayRef} onChange={onChangeSelect}>
           {dayList.map((item, index) => {
             return (
               <option key={index} value={item}>

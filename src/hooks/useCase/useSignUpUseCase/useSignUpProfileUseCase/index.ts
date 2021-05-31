@@ -20,7 +20,6 @@ const useSignUpProfileUseCase = () => {
     }).then(
       (res) => {
         getTokenUseCase();
-        onIncreasePageNum();
         Promise.resolve(res);
       },
       (err) => {
@@ -55,7 +54,9 @@ const useSignUpProfileUseCase = () => {
   const getTokenUseCase = () => {
     signIn({ id: id, pw: pw }).then(
       (res) => {
+        localStorage.setItem("uuid", res?.uuid ?? "");
         localStorage.setItem("token", res?.token ?? "");
+        onIncreasePageNum();
         Promise.resolve(res);
       },
       (err) => {

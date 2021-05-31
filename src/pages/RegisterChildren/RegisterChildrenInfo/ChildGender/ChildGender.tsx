@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const SContainer = styled.div`
@@ -32,8 +32,17 @@ const SGenderBox = styled.div<{ selected: boolean }>`
   cursor: pointer;
 `;
 
-export const ChildGender: FC = () => {
-  const [gender, setGender] = useState<number>(0);
+interface Props {
+  onChange: (sex: 'male' | 'female') => void;
+}
+
+export const ChildGender: FC<Props> = ({ onChange }) => {
+  const [gender, setGender] = useState<number>(1);
+
+  useEffect(() => {
+    if(gender === 1) onChange('male');
+    else if(gender === 2) onChange('female');
+  }, [gender])
 
   return (
     <SContainer>

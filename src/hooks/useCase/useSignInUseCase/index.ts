@@ -10,6 +10,7 @@ const useSignInUseCase = () => {
   const signInUseCase = () => {
     signIn({ id: signInForm.id, pw: signInForm.pw }).then(
       (res) => {
+        localStorage.setItem("uuid", res?.uuid ?? "");
         localStorage.setItem("token", res?.token ?? "");
         Promise.resolve(res);
       },

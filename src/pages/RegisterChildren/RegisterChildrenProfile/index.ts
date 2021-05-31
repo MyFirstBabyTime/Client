@@ -1,1 +1,1 @@
-export { RegisterChildrenProfileView as default } from './RegisterChildrenProfileView';
+export { RegisterChildrenProfileContainer as default } from './RegisterChildrenProfileContainer';

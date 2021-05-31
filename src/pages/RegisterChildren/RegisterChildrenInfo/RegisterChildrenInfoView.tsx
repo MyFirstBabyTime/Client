@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 import styled from "styled-components";
 import { InputForm } from "../../../components/Authentication/InputForm";
 import { SubmitButton } from "../../../components/Authentication/SubmitButton";
@@ -26,10 +26,13 @@ const SInputFormWrapper = styled.div`
 `;
 
 interface Props {
-  onIncreasePageNum: () => void;
+  onChangeChildName: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeChildBirth: (birth: string) => void;
+  onChangeChildSex: (sex: 'male' | 'female') => void;
+  onClickNextBtn: () => void;
 }
 
-export const RegisterChildrenInfoView: FC<Props> = ({ onIncreasePageNum }) => {
+export const RegisterChildrenInfoView: FC<Props> = ({ onChangeChildName, onChangeChildBirth, onChangeChildSex, onClickNextBtn }) => {
   return (
     <SContainer>
       <SInputFormWrapper>
@@ -37,11 +40,12 @@ export const RegisterChildrenInfoView: FC<Props> = ({ onIncreasePageNum }) => {
           type="text"
           title="이름"
           placeholder="아이의 이름을 입력하세요"
+          onChange={onChangeChildName}
         />
-        <ChildBirthday />
-        <ChildGender />
+        <ChildBirthday onChange={onChangeChildBirth} />
+        <ChildGender onChange={onChangeChildSex} />
       </SInputFormWrapper>
-      <SubmitButton text="다음" onClick={onIncreasePageNum} />
+      <SubmitButton text="다음" onClick={onClickNextBtn} />
       <WarningText />
       <PagePoint position={1} end={2} />
     </SContainer>
