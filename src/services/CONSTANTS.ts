@@ -7,3 +7,5 @@ export const SIGN_UP_CHECK_ID_DUPLICATION = (id: string) =>
 export const SIGN_UP_CREATE_PARENT_ACCOUNT = () => "/parents";
 
 export const SIGN_IN = () => "/login/parent";
+
+export const REGISTER_CHILDREN = (parentUuid: string) => `/parents/uuid/${parentUuid}/children`;
