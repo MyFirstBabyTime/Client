@@ -1,5 +1,4 @@
 export const SIGN_IN = "/sign-in";
-
-export const SIGN_UP_FORM = "/sign-up/form";
-export const SIGN_UP_VERIFICATION = "/sign-up/verification";
-export const SIGN_UP_PROFILE = "/sign-up/profile";
+export const SIGN_UP = "/sign-up";
+export const REGISTER_CHILDREN = "/register-children";
+export const MAIN = "/main";

@@ -1,0 +1,1 @@
+export { MainBackgroundView as default } from './MainBackgroundView'

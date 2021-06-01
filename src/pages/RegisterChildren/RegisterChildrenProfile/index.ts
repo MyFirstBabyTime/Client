@@ -1,0 +1,1 @@
+export { RegisterChildrenProfileContainer as default } from './RegisterChildrenProfileContainer';

@@ -4,12 +4,12 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import {
-  SIGN_IN,
-  SIGN_UP_FORM,
-  SIGN_UP_VERIFICATION,
-  SIGN_UP_PROFILE,
-} from "./CONSTANTS";
+import { REGISTER_CHILDREN, SIGN_IN, SIGN_UP, MAIN } from "./CONSTANTS";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
+import RegisterChildren from "../pages/RegisterChildren";
+import Main from "../pages/Main";
+import NotFound from "./NotFound";
 
 const RouterConfig = () => {
   return (
@@ -17,12 +17,12 @@ const RouterConfig = () => {
       <Switch>
         <Redirect exact path="/" to={SIGN_IN} />
 
-        <Route exact path={SIGN_IN} />
-        <Route exact path={SIGN_UP_FORM} />
-        <Route exact path={SIGN_UP_VERIFICATION} />
-        <Route exact path={SIGN_UP_PROFILE} />
+        <Route exact path={SIGN_IN} component={SignIn} />
+        <Route exact path={SIGN_UP} component={SignUp} />
+        <Route exact path={REGISTER_CHILDREN} component={RegisterChildren} />
+        <Route exact path={MAIN} component={Main} />
 
-        <Route path="*" />
+        <Route path="*" component={NotFound} />
       </Switch>
     </Router>
   );
