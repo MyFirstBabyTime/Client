@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { RegisterChildrenContext } from '../../../../contexts/RegisterChildrenContext';
+import { MAIN } from '../../../../navigation/CONSTANTS';
 import { useRegisterChildrenInfo } from '../../../domain/useRegisterChildren/useRegisterChildrenInfo';
 
 const useRegisterChildrenInfoUseCase = () => {
@@ -17,7 +18,7 @@ const useRegisterChildrenInfoUseCase = () => {
       registerChildrenContext.setContextChildBirth(registerChildrenForm.childBirth);
       registerChildrenContext.setContextChildSex(registerChildrenForm.childSex);
       registerChildrenContext.onIncreasePageNum();
-    } else history.push('/main');
+    } else history.push(MAIN);
   }
 
   return {
