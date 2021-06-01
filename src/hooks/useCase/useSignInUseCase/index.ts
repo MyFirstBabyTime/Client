@@ -1,7 +1,10 @@
+import { useHistory } from "react-router";
+import { MAIN } from "../../../navigation/CONSTANTS";
 import { signIn } from "../../../services";
 import { useSignIn } from "../../domain/useSignIn";
 
 const useSignInUseCase = () => {
+  const history = useHistory();
   const {
     state: { signInForm, signInIdError, signInPwError },
     setState: { setSignInForm, setSignInIdError, setSignInPwError },
@@ -12,6 +15,7 @@ const useSignInUseCase = () => {
       (res) => {
         localStorage.setItem("uuid", res?.uuid ?? "");
         localStorage.setItem("token", res?.token ?? "");
+        history.push(MAIN);
         Promise.resolve(res);
       },
       (err) => {
