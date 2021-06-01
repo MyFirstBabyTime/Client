@@ -6,7 +6,7 @@ import { Title } from "../../components/Authentication/Title";
 import { BackButton } from "../../components/Authentication/BackButton";
 import { useHistory } from "react-router";
 import { RegisterChildrenContext } from "../../contexts/RegisterChildrenContext";
-import { SIGN_UP } from "../../navigation/CONSTANTS";
+import { MAIN, SIGN_UP } from "../../navigation/CONSTANTS";
 
 const SContainer = styled.div`
   width: 36vw;
@@ -24,7 +24,7 @@ export const RegisterChildrenView: FC = () => {
 
   useEffect(() => {
     if (pageNum === 0) history.push(SIGN_UP);
-    if (pageNum === 3) history.push("/main");
+    if (pageNum === 3) history.push(MAIN);
   }, [pageNum, history]);
 
   return (
