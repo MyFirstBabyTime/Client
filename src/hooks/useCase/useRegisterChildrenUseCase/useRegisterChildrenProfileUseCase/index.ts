@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { RegisterChildrenContext } from '../../../../contexts/RegisterChildrenContext';
+import { MAIN } from '../../../../navigation/CONSTANTS';
 import { registerChildren } from '../../../../services/registerChildren/registerChildrenService';
 import { useRegisterChildrenProfile } from '../../../domain/useRegisterChildren/useRegisterChildrenProfile';
 
@@ -20,7 +21,7 @@ const useRegisterChildrenProfileUseCase = () => {
       profile: registerChildrenProfile
     }, localStorage.getItem("uuid") ?? "").then(
       (res) => {
-        history.push('/main');
+        history.push(MAIN);
         Promise.resolve(res);
       },
       (err) => {
